@@ -31,7 +31,8 @@ class _ProductListWidgetState extends State<ProductListWidget> {
         productsList = value;
       });
     });
-    scrollController.addListener(() {
+
+/*    scrollController.addListener(() {
       if(scrollController.position.pixels == scrollController.position.maxScrollExtent){
         setState(() {
           indexProductsList +=1;
@@ -42,7 +43,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
         print('scroller');
       }
 
-    });
+    });*/
   }
   @override
   Widget build(BuildContext context) {

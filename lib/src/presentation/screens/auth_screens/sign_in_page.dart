@@ -34,7 +34,7 @@ class _SignInPageState extends State<SignInPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("Sign In", style: TextStyle(fontFamily: 'love days', fontSize: 46),),
+                Text("Sign In", style: TextStyle( fontSize: 46),),
                 SizedBox(height: 40,),
                 buildTextField(context, ' Enter your gmail ...', emailTextController),
                 SizedBox(height: 15,),
