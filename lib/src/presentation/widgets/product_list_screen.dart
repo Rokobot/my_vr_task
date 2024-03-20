@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_app/src/presentation/widgets/product_item_widget.dart';
+import 'package:task_app/src/utils/toast.dart';
 
 import '../../constants/theme_constans.dart';
 import '../../data/model/products_model.dart';
@@ -18,32 +19,20 @@ class ProductListWidget extends StatefulWidget {
 
 class _ProductListWidgetState extends State<ProductListWidget> {
   ///Propertys
-  List<ProductsModel>?  productsList;
-  int indexProductsList = 1;
+  List<ProductsModel>?  productsList = [];
   ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    DioService().getAllProducts().then((value){
-      setState(() {
-        productsList = value;
-      });
-    });
+    loadMoreData();
+  }
 
-/*    scrollController.addListener(() {
-      if(scrollController.position.pixels == scrollController.position.maxScrollExtent){
-        setState(() {
-          indexProductsList +=1;
-        });
-        print(indexProductsList);
-        print('MAXX');
-      }else{
-        print('scroller');
-      }
-
-    });*/
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -58,11 +47,13 @@ class _ProductListWidgetState extends State<ProductListWidget> {
             CircularProgressIndicator(color: ThemeColorData().productCardColor,),
           ],
         )) : widget.selectedCategory != 'All' ? ListView.builder(
+          physics: AlwaysScrollableScrollPhysics(),
           controller: scrollController,
             itemCount: productsList?.length ,
             itemBuilder: (context, index){
               return productsList![index].productsCategory == widget.selectedCategory ? ProductItemWidget(index: index, productsList: productsList!): SizedBox();
             }) : ListView.builder(
+            physics: AlwaysScrollableScrollPhysics(),
           controller: scrollController,
             itemCount: productsList?.length ,
             itemBuilder: (context, index){
@@ -70,4 +61,30 @@ class _ProductListWidgetState extends State<ProductListWidget> {
             })
     );
   }
+
+  void loadMoreData(){
+    ///-----------------------
+    DioService().getAllProducts(productsList!.length).then((value){
+      setState(() {
+        productsList!.addAll(value);
+      });
+    });
+    ///----------------------
+    scrollController.addListener(() {
+      if(scrollController.position.pixels == scrollController.position.maxScrollExtent){
+        DioService().getAllProducts(productsList!.length).then((value){
+          setState(() {
+            productsList!.addAll(value);
+            ShowToast().showToast('👀new data!');
+            print('max');
+          });
+        });
+      }
+
+    });
+    ///---------------------
+  }
 }
+
+
+

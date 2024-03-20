@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:task_app/src/constants/service_constants.dart';
@@ -60,16 +62,19 @@ class DioService {
   }
 
   ///Fetch Products
-  Future<List<ProductsModel>> getAllProducts() async {
+  Future<List<ProductsModel>> getAllProducts(int skip) async {
     List<ProductsModel> productsList = [];
-    try {
-      var response = await dio.get('${DataConstans().baseUrl}/products',
-          options: Options(contentType: 'application/json', ),
 
+    try {
+      var response = await dio.get(
+        '${DataConstans().baseUrl}/products',
+        options: Options(contentType: 'application/json'),
+        queryParameters: {'limit': DataConstans().limit, 'skip':skip}
       );
       if (response.statusCode == 200) {
-        productsList = List<ProductsModel>.from(response.data.map((json) => ProductsModel.fromJson(json)));
-
+        productsList = List<ProductsModel>.from(
+          response.data.map((json) => ProductsModel.fromJson(json)),
+        );
         return productsList;
       } else {
         print('your response status code ${response.statusCode}');
@@ -80,5 +85,6 @@ class DioService {
       return [];
     }
   }
+
 
 }
