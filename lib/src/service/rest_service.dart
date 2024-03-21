@@ -23,6 +23,7 @@ class DioService {
           options: Options(contentType: 'application/json'));
       if (response.statusCode == 200) {
         print(response.data['token']);
+
         ///Show with toast succes procces
         ShowToast().showToast('👌 response status message: ${response.statusMessage}');
         ///Add token to secure storage (Local Data)
@@ -64,7 +65,6 @@ class DioService {
   ///Fetch Products
   Future<List<ProductsModel>> getAllProducts(int skip) async {
     List<ProductsModel> productsList = [];
-
     try {
       var response = await dio.get(
         '${DataConstans().baseUrl}/products',

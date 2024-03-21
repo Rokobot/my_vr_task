@@ -10,6 +10,8 @@ class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryInitial(value: 'All'));
 
   Widget showDropDown(){
+    List<String> downList =['jewelery','men\'s clothing','women\'s clothing', 'electronics', 'All'];
+    List<String> selectedList =['category 💎','category 👦️','category 👧', 'category ⚡', 'category 😎'];
     return Container(
 
       decoration: BoxDecoration(
@@ -21,20 +23,19 @@ class CategoryCubit extends Cubit<CategoryState> {
         child: DropdownButton(
           dropdownColor: ThemeColorData().scaffoldBackgrounColor,
           borderRadius: BorderRadius.circular(20),
+
           elevation: 100,
           underline: SizedBox(),
-          items: [
-            DropdownMenuItem(child: Text('jewelery'),value: 'jewelery',),
-            DropdownMenuItem(child: Text('men\'s clothing'),value: 'men\'s clothing',),
-            DropdownMenuItem(child: Text('women\'s clothing'),value: 'women\'s clothing',),
-            DropdownMenuItem(child: Text('electronics'),value: 'electronics',),
-            DropdownMenuItem(child: Text('All'),value: 'All',),
-          ],
+          items: downList.map((item) =>DropdownMenuItem( child: Container(constraints: BoxConstraints(minWidth: 200, maxWidth: 200),child: Text(item, style: TextStyle(color: Colors.white),)),value: item,),
+          ).toList(),
           onChanged: (newValue){
             value = newValue!;
             return emit(CategoryNewState(value: value));
           },
           value: value,
+
+          selectedItemBuilder: (value)=> selectedList.map((item) => DropdownMenuItem(child: Text('${item}',style: TextStyle(color: Colors.white,fontSize: 14),))).toList()
+
         ),
       ),
     );
