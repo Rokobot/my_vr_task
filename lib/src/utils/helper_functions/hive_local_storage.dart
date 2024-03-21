@@ -5,19 +5,24 @@ import 'package:task_app/src/data/model/hive_model.dart';
 
 class HiveLocalStorage{
   var userInfo = Hive.box('user_info');
-  void hiveWrite(String userEmail, String userPassowrd){
-    HiveModel hiveModel =  HiveModel(userEmail: userEmail, userPassowrd: userPassowrd);
+  void hiveWrite(String userEmail, String userName){
+    HiveModel hiveModel =  HiveModel(userEmail: userEmail, userName:userName );
     userInfo.put('user_email',hiveModel.userEmail);
-    userInfo.put('user_password',hiveModel.userPassowrd);
+    userInfo.put('user_name',hiveModel.userName);
 
   }
 
   List<dynamic> hiveRead(){
     String userEmail = userInfo.get('user_email');
-    String userPassowrd = userInfo.get('user_password');
-    print(userEmail);
-    return [userEmail, userPassowrd];
+    String userName = userInfo.get('user_name');
+    print('user email: ${userEmail}');
+    print('user name: ${userName}');
+    print(userName);
+    return [userEmail, userName];
   }
+
+
+
 
 
 }

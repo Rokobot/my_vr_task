@@ -23,6 +23,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
 
   ///Catch text controller
+  TextEditingController userNameTextController = TextEditingController();
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
 
@@ -64,6 +65,8 @@ class _SignInPageState extends State<SignInPage> {
             children: [
               Text("Sign In", style: TextStyle( fontSize: 46),),
               SizedBox(height: 40,),
+              buildTextField(context, ' Enter your username ...', userNameTextController),
+              SizedBox(height: 15,),
               buildTextField(context, ' Enter your gmail ...', emailTextController),
               SizedBox(height: 15,),
               buildTextField(context, ' Enter your password ... ', passwordTextController),
@@ -75,7 +78,7 @@ class _SignInPageState extends State<SignInPage> {
                     backgroundColor: MaterialStatePropertyAll(ThemeColorData().fontColor),
                   ),
                   onPressed: (){
-                    ctx.read<SignInBloc>().add(GetTokenEvent(context: context, userEmail: emailTextController.text, userPassword: passwordTextController.text));
+                    ctx.read<SignInBloc>().add(GetTokenEvent(context: context, userEmail: emailTextController.text, userPassword: passwordTextController.text, userName: userNameTextController.text));
                   }, child: Text('Sign in', style: TextStyle(color: Colors.white),)),
             ),
               SizedBox(height: Responsive().height(context, 0.05),),

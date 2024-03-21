@@ -14,7 +14,11 @@ class HelperFunction{
   Future<String> readUserTokenFromDB() async {
     String value = await secureStorage.read(key: 'Token') ?? '';
     return value;
+  }
 
+  ///Delete token from secure storage
+  void deleteTokenFromSecureStorage(){
+    secureStorage.delete(key: 'Token');
   }
 
 }

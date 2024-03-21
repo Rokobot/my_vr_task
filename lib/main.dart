@@ -8,6 +8,7 @@ import 'package:task_app/src/constants/theme_constans.dart';
 import 'package:task_app/src/data/model/hive_model.dart';
 import 'package:task_app/src/logic/bloc/auth_bloc/sign_in_bloc.dart';
 import 'package:task_app/src/logic/cubit/category_cubit/category_cubit.dart';
+import 'package:task_app/src/logic/cubit/user_info_cubit/user_info_cubit.dart';
 import 'package:task_app/src/presentation/screens/auth_screens/sign_in_page.dart';
 import 'package:task_app/src/presentation/screens/general_screens/home_page.dart';
 import 'package:task_app/src/utils/helper_functions/hive_local_storage.dart';
@@ -56,7 +57,8 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context)=> CategoryCubit()),
-        BlocProvider(create: (context)=> SignInBloc())
+        BlocProvider(create: (context)=> SignInBloc()),
+        BlocProvider(create: (context)=> UserInfoCubit()),
       ],
       child: MaterialApp(
         ///Conf your app all theme over main.dart
@@ -71,7 +73,7 @@ class _MyAppState extends State<MyApp> {
                 )),
 
         home: Scaffold(
-          body: _userTokenStatus == '' ? const SignInPage() : const HomeScreen(),
+          body:  _userTokenStatus == '' ? const SignInPage() : const HomeScreen(),
         ),
       ),
     );

@@ -47,13 +47,19 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               body: currentPageIndex == 0 ?  ProductListWidget(selectedCategory: state.value!,) : ProfilePage(),
               bottomNavigationBar: BottomNavigationBar(
+                selectedItemColor: ThemeColorData().scaffoldBackgrounColor,
+                unselectedItemColor: Colors.grey,
+                unselectedFontSize: 13,
+                selectedFontSize: 16,
+                showUnselectedLabels: false,
+                currentIndex: currentPageIndex,
                 onTap: (index){
                   setState(() {
                     currentPageIndex = index;
                   });
                 },
                   backgroundColor: ThemeColorData().productCardColor,
-                  items: [BottomNavigationBarItem(icon: Icon(Icons.store), label: ''),BottomNavigationBarItem(icon: Icon(Icons.person),label: '')]),
+                  items: [BottomNavigationBarItem(icon: Icon(Icons.store), label: 'store'),BottomNavigationBarItem(icon: Icon(Icons.person),label: 'profile')]),
           );
   }
 }

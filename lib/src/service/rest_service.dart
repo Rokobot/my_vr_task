@@ -86,5 +86,18 @@ class DioService {
     }
   }
 
+  ///Delete User
+  Future<String?> deleteUser() async {
+    try{
+      var response = await dio.get('${DataConstans().baseUrl}/users/6', options: Options(
+        contentType: 'application/json'
+      ));
+      return response.statusMessage;
+
+    }catch(e){
+      return e.toString();
+    }
+  }
+
 
 }

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:task_app/src/constants/theme_constans.dart';
+import 'package:task_app/src/presentation/screens/auth_screens/sign_in_page.dart';
+import 'package:task_app/src/service/rest_service.dart';
+import 'package:task_app/src/utils/helper_functions/hive_local_storage.dart';
+import 'package:task_app/src/utils/helper_functions/token_secure_storage.dart';
+import 'package:task_app/src/utils/toast.dart';
 
 import '../../../utils/responsive.dart';
 
@@ -24,7 +29,7 @@ class _SettingPageState extends State<SettingPage> {
           backgroundColor: ThemeColorData().productCardColor,
           title: Text('Settings', style: TextStyle(color: Colors.white),),
         ),
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: ThemeColorData().productCardColor,
         body: Center(
           child: Column(
             children: [
@@ -36,7 +41,7 @@ class _SettingPageState extends State<SettingPage> {
                 highlightColor: Colors.greenAccent,
                 child:Ink(
                   decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(8)),
-                  width: Responsive().width(context, 0.8),
+                  width: Responsive().width(context, 0.95),
                   child:Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -52,12 +57,23 @@ class _SettingPageState extends State<SettingPage> {
               SizedBox(height: 5,),
               InkWell(
                 borderRadius: BorderRadius.circular(8),
-                onTap: (){},
+                onTap: (){
+                  DioService().deleteUser().then((value) {
+                    if(value == 'OK'){
+                      HelperFunction().deleteTokenFromSecureStorage();
+                      ShowToast().showToast('👌 Acoount deleted succesfuly!');
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignInPage()));
+                    }else{
+                      ShowToast().showToast('Try again!');
+                    }
+                  });
+
+                },
                 splashColor: Colors.white,
                 highlightColor: Colors.greenAccent,
                 child:Ink(
                   decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(8)),
-                  width: Responsive().width(context, 0.8),
+                  width: Responsive().width(context, 0.95),
                   child:Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(

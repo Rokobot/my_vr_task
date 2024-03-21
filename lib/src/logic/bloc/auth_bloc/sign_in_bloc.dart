@@ -22,18 +22,23 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
     ///Extentions to check credental info
     emit(LoadingState(loading: true));
-    if(event.userEmail.isValidEmail){
-      if(event.userPassword.isValidPassword){
-        emit(LoadingState(loading: false));
-        emit(SignInStateSucces());
-        HiveLocalStorage().hiveWrite(event.userEmail, event.userPassword);
-        DioService().getTokenWithLogin(event.context);
+    if(event.userName.isValidUserName){
+      if(event.userEmail.isValidEmail){
+        if(event.userPassword.isValidPassword){
+          emit(LoadingState(loading: false));
+          emit(SignInStateSucces());
+          HiveLocalStorage().hiveWrite(event.userEmail, event.userName);
+          DioService().getTokenWithLogin(event.context);
+        }else{
+          emit(ErrorState(errror: 'Let it be more than 6'));
+        }
       }else{
-        emit(ErrorState(errror: 'invalid password '));
+        emit(ErrorState(errror: 'Write to gmail according to norms'));
       }
     }else{
-      emit(ErrorState(errror: 'invalid email'));
+      emit(ErrorState(errror: 'Your name should be longer than 4'));
     }
+
 
   }
 }

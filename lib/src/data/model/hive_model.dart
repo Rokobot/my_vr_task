@@ -7,8 +7,9 @@ class HiveModel{
   @HiveField(0)
   String userEmail;
   @HiveField(1)
-  String userPassowrd;
+  String userName;
 
-  HiveModel({required this.userEmail, required this.userPassowrd});
+
+  HiveModel({required this.userEmail, required this.userName});
 
 }
