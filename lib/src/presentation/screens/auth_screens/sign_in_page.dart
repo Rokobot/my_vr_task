@@ -10,8 +10,6 @@ import '../../../constants/theme_constans.dart';
 import '../../../utils/responsive.dart';
 import '../../widgets/text_field_method.dart';
 
-
-
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
 
@@ -25,6 +23,15 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController userNameTextController = TextEditingController();
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    userNameTextController.dispose();
+    emailTextController.dispose();
+    passwordTextController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +50,7 @@ class _SignInPageState extends State<SignInPage> {
                   return buildSigIn(context,state);
                 }
                 if(state is LoadingState){
-                  return state.loading ?  CircularProgressIndicator(color: ThemeColorData().productCardColor,)  : buildSigIn(context, state);
+                  return state.loading ? Center(child: CircularProgressIndicator(color: Colors.white,),) : Container();
                 }
                 if(state is SignInStateSucces){
                   return buildSigIn(context, state);              }

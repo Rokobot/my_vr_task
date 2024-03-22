@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:task_app/src/service/rest_service.dart';
 import 'package:task_app/src/utils/extentions/auth_extentions.dart';
+import 'package:task_app/src/utils/toast.dart';
 
 import '../../../utils/helper_functions/hive_local_storage.dart';
 import '../../../utils/helper_functions/token_secure_storage.dart';
@@ -25,10 +26,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     if(event.userName.isValidUserName){
       if(event.userEmail.isValidEmail){
         if(event.userPassword.isValidPassword){
-          emit(LoadingState(loading: false));
-          emit(SignInStateSucces());
           HiveLocalStorage().hiveWrite(event.userEmail, event.userName);
           DioService().getTokenWithLogin(event.context);
+          emit(LoadingState(loading: false));
+          emit(SignInStateSucces());
         }else{
           emit(ErrorState(errror: 'Let it be more than 6'));
         }

@@ -22,7 +22,7 @@ class DioService {
           data: {'username': 'mor_2314', 'password': '83r5^_'},
           options: Options(contentType: 'application/json'));
       if (response.statusCode == 200) {
-        print(response.data['token']);
+
 
         ///Show with toast succes procces
         ShowToast().showToast('👌 response status message: ${response.statusMessage}');
