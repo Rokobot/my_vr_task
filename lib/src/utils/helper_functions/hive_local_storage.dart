@@ -5,6 +5,7 @@ import 'package:task_app/src/data/model/hive_model.dart';
 
 class HiveLocalStorage{
   var userInfo = Hive.box('user_info');
+
   void hiveWrite(String userEmail, String userName){
     HiveModel hiveModel =  HiveModel(userEmail: userEmail, userName:userName );
     userInfo.put('user_email',hiveModel.userEmail);

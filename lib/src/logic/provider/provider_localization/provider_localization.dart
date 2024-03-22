@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LanguageProvider extends ChangeNotifier {
   String _selectedLanguage = 'en';
-  List<String> get languages => ['en', 'ru', 'az'];
+  List<String> get languages => ['en', 'tr', 'az'];
 
   String get selectedLanguage => _selectedLanguage;
 

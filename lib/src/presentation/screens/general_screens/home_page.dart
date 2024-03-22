@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_app/src/constants/theme_constans.dart';
 import 'package:task_app/src/logic/cubit/category_cubit/category_cubit.dart';
 import 'package:task_app/src/presentation/screens/general_screens/profile_page.dart';
-import 'package:task_app/src/presentation/widgets/product_list_screen.dart';
+import 'package:task_app/src/presentation/widgets/product_list_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 

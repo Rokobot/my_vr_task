@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:task_app/src/presentation/widgets/product_item_widget.dart';
+import 'package:task_app/src/utils/locator/locator_get_it.dart';
 import 'package:task_app/src/utils/toast.dart';
 
 import '../../constants/theme_constans.dart';
@@ -21,6 +23,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
   ///Propertys
   List<ProductsModel>?  productsList = [];
   ScrollController scrollController = ScrollController();
+  DioService dioServiceLocator = locator<DioService>();
 
   @override
   void initState() {
@@ -64,7 +67,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
 
   void loadMoreData(){
     ///-----------------------
-    DioService().getAllProducts(productsList!.length).then((value){
+    dioServiceLocator.getAllProducts(productsList!.length).then((value){
       setState(() {
         productsList!.addAll(value);
       });
@@ -72,7 +75,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
     ///----------------------
     scrollController.addListener(() {
       if(scrollController.position.pixels == scrollController.position.maxScrollExtent){
-        DioService().getAllProducts(productsList!.length).then((value){
+        dioServiceLocator.getAllProducts(productsList!.length).then((value){
           setState(() {
             productsList!.addAll(value);
             ShowToast().showToast('👀new data!');

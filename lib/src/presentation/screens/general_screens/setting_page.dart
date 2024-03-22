@@ -5,6 +5,7 @@ import 'package:task_app/src/logic/provider/provider_localization/provider_local
 import 'package:task_app/src/presentation/screens/auth_screens/sign_in_page.dart';
 import 'package:task_app/src/service/rest_service.dart';
 import 'package:task_app/src/utils/helper_functions/token_secure_storage.dart';
+import 'package:task_app/src/utils/locator/locator_get_it.dart';
 import 'package:task_app/src/utils/toast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../utils/responsive.dart';
@@ -17,6 +18,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  DioService dioServiceLocator = locator<DioService>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -85,7 +87,7 @@ class _SettingPageState extends State<SettingPage> {
               InkWell(
                 borderRadius: BorderRadius.circular(8),
                 onTap: () {
-                  DioService().deleteUser().then((value) {
+                  dioServiceLocator.deleteUser().then((value) {
                     if (value == 'OK') {
                       HelperFunction().deleteTokenFromSecureStorage();
                       ShowToast().showToast('👌 Acoount deleted succesfuly!');

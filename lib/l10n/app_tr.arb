@@ -1,0 +1,23 @@
+{
+  "appTitle": "TrendOL",
+  "category": "kategori",
+  "price": "fiyat",
+  "rate": "puan",
+  "count": "adet",
+  "username": "kullanıcı adı",
+  "token": "token",
+  "email": "e-posta",
+  "go_setting": "Ayarlar'a Git",
+  "settings": "Ayarlar",
+  "edit_info": "Bilgiyi Düzenle",
+  "apply": "Uygula",
+  "discard": "İptal Et",
+  "delete_account": "Hesabı Sil",
+  "language": "Dili Değiştir",
+  "store": "mağaza",
+  "profile": "profil",
+  "sign_in_": "oturum aç",
+  "sign_up_": "kaydol",
+  "go_sign_up": "Hesabınız yok mu?",
+  "go_sign_in": "Hesabınız var mı"
+}

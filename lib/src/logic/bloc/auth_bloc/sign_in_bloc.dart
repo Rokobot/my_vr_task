@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:task_app/src/service/rest_service.dart';
 import 'package:task_app/src/utils/extentions/auth_extentions.dart';
+import 'package:task_app/src/utils/locator/locator_get_it.dart';
 import 'package:task_app/src/utils/toast.dart';
 
 import '../../../utils/helper_functions/hive_local_storage.dart';
@@ -20,14 +21,16 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
 
   void SignInEventMethod(GetTokenEvent event, Emitter<SignInState> emit){
-
+    ///Get_it call
+    DioService dioServiceLocator = locator<DioService>();
+    HiveLocalStorage hiveLocalStorage = locator<HiveLocalStorage>();
     ///Extentions to check credental info
     emit(LoadingState(loading: true));
     if(event.userName.isValidUserName){
       if(event.userEmail.isValidEmail){
         if(event.userPassword.isValidPassword){
-          HiveLocalStorage().hiveWrite(event.userEmail, event.userName);
-          DioService().getTokenWithLogin(event.context);
+          hiveLocalStorage.hiveWrite(event.userEmail, event.userName);
+          dioServiceLocator.getTokenWithLogin(event.context);
           emit(LoadingState(loading: false));
           emit(SignInStateSucces());
         }else{

@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/src/constants/theme_constans.dart';
 import 'package:task_app/src/data/model/hive_model.dart';
@@ -18,14 +19,20 @@ import 'package:task_app/src/presentation/screens/general_screens/home_page.dart
 import 'package:task_app/src/utils/helper_functions/hive_local_storage.dart';
 import 'package:task_app/src/utils/helper_functions/token_secure_storage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:task_app/src/utils/locator/locator_get_it.dart';
 void main()  async {
+
+
 
   ///Init all procces in flutter like async
   WidgetsFlutterBinding.ensureInitialized();
+  var appDocumentDirectory = await getApplicationDocumentsDirectory();
 
   ///Local Storage Hive init
   await Hive.initFlutter();
   await Hive.openBox('user_info');
+  ///Locator setup
+  setupLocator();
 
 
   ///Make your app stable rotate
@@ -89,7 +96,7 @@ class _MyAppState extends State<MyApp> {
             supportedLocales: [
               Locale('az'),
               Locale('en'),
-              Locale('ru')
+              Locale('tr')
             ],
 
             locale: Locale(langProvider.selectedLanguage),
