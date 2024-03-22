@@ -5,8 +5,7 @@ import 'package:task_app/src/logic/bloc/auth_bloc/sign_in_bloc.dart';
 import 'package:task_app/src/presentation/screens/auth_screens/sign_up_page.dart';
 import 'package:task_app/src/utils//navigator.dart';
 import 'package:task_app/src/utils/toast.dart';
-
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../constants/theme_constans.dart';
 import '../../../utils/responsive.dart';
 import '../../widgets/text_field_method.dart';
@@ -63,7 +62,9 @@ class _SignInPageState extends State<SignInPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("Sign In", style: TextStyle( fontSize: 46),),
+              Text("TrendOL", style: TextStyle( fontSize: 46),),
+              Container(margin: EdgeInsets.only(bottom: 5), color: Colors.black,width: 40,height: 0.7,),
+              Text("${AppLocalizations.of(context)!.sign_in_}", style: TextStyle( fontSize: 20),),
               SizedBox(height: 40,),
               buildTextField(context, ' Enter your username ...', userNameTextController),
               SizedBox(height: 15,),
@@ -79,12 +80,12 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   onPressed: (){
                     ctx.read<SignInBloc>().add(GetTokenEvent(context: context, userEmail: emailTextController.text, userPassword: passwordTextController.text, userName: userNameTextController.text));
-                  }, child: Text('Sign in', style: TextStyle(color: Colors.white),)),
+                  }, child: Text('${AppLocalizations.of(context)!.sign_in_}', style: TextStyle(color: Colors.white),)),
             ),
               SizedBox(height: Responsive().height(context, 0.05),),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: Text.rich(TextSpan(text: 'Don\'t have an account? ',children: [TextSpan(text: 'Sign up', style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, decorationColor: Colors.blue), recognizer: TapGestureRecognizer()..onTap = (){
+                child: Text.rich(TextSpan(text: '${AppLocalizations.of(context)!.go_sign_up} ',children: [TextSpan(text: '${AppLocalizations.of(context)!.sign_up_}', style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, decorationColor: Colors.blue), recognizer: TapGestureRecognizer()..onTap = (){
                   pageNavigation().push(context, SignUpPage());
                 })])),
               )

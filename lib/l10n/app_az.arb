@@ -1,0 +1,23 @@
+{
+  "appTitle": "TrendOL",
+  "category": "kateqoriya",
+  "price": "qiymət",
+  "rate": "dərəcə",
+  "count": "say",
+  "username": "istifadəçi adınız",
+  "token": "token",
+  "email": "elektron ünvan",
+  "go_setting": "tənzimləmələr",
+  "setting": "tənzimləmələr",
+  "edit_info": "Məlumat dəyiş",
+  "apply": "qəbul",
+  "discard": "rədd",
+  "delete_account": "hesabını sil",
+  "language": "dil dəyiş",
+  "store": "mağaza",
+  "profile": "hesab",
+  "sign_in_": "daxil ol",
+  "sign_up_": "qeydiyyat",
+  "go_sign_up": "Hesabınız yoxdur?",
+  "go_sign_in": "Hesabınız var?"
+}

@@ -1,0 +1,23 @@
+{
+  "appTitle": "TrendOL",
+  "category": "category",
+  "price": "price",
+  "rate": "rate",
+  "count": "count",
+  "username": "username",
+  "token": "token",
+  "email": "email",
+  "go_setting": "go settings",
+  "settings": "Settings",
+  "edit_info": "edit info",
+  "apply": "apply",
+  "discard": "discard",
+  "delete_account": "delete account",
+  "language": "language",
+  "store": "store",
+  "profile": "profile",
+  "sign_in_": "sign in",
+  "sign_up_": "sign up",
+  "go_sign_up": "Don\\'t have an account? ",
+  "go_sign_in": "Do you have an account? "
+}

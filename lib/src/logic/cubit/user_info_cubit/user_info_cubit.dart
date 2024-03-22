@@ -2,12 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:task_app/src/data/model/hive_model.dart';
 import 'package:task_app/src/presentation/widgets/text_field_widget.dart';
 import 'package:task_app/src/utils/helper_functions/hive_local_storage.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../constants/theme_constans.dart';
-
 part 'user_info_state.dart';
 
 class UserInfoCubit extends Cubit<UserInfoState> {
@@ -18,7 +16,7 @@ class UserInfoCubit extends Cubit<UserInfoState> {
 
     showDialog(barrierDismissible: false, context: context, builder: (context){
       return AlertDialog(
-        title: Text('Edit info', style: TextStyle(fontSize: 14, color: Colors.white),),
+        title: Text('${AppLocalizations.of(context)!.edit_info}', style: TextStyle(fontSize: 14, color: Colors.white),),
         backgroundColor: ThemeColorData().productCardColor,
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -40,14 +38,14 @@ class UserInfoCubit extends Cubit<UserInfoState> {
               userNameController.clear();
               userEmailController.clear();
             }
-          }, child: Text('apply', style: TextStyle(color: Colors.green),)),
+          }, child: Text('${AppLocalizations.of(context)!.apply}', style: TextStyle(color: Colors.green),)),
           ElevatedButton(
               style: ButtonStyle(
                 backgroundColor:MaterialStatePropertyAll(ThemeColorData().fontColor, ),
               ),
               onPressed: (){
                 Navigator.pop(context);
-              }, child: Text('discard', style: TextStyle(color: Colors.red),)),
+              }, child: Text('${AppLocalizations.of(context)!.discard}', style: TextStyle(color: Colors.red),)),
         ],
       );
     });

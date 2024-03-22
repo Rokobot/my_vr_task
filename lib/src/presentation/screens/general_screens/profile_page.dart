@@ -8,8 +8,7 @@ import 'package:task_app/src/utils/helper_functions/hive_local_storage.dart';
 import 'package:task_app/src/utils/helper_functions/token_secure_storage.dart';
 import 'package:task_app/src/utils/navigator.dart';
 import 'package:task_app/src/utils/responsive.dart';
-
-import '../../../data/model/hive_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 
@@ -111,7 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       Align(
                         alignment: Alignment.bottomLeft,
-                        child: Container(margin: EdgeInsets.all(10), child: Text.rich(TextSpan(text: 'go settings',style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue, decorationColor: Colors.blue), recognizer: TapGestureRecognizer()..onTap =(){pageNavigation().push(context, SettingPage());}
+                        child: Container(margin: EdgeInsets.all(10), child: Text.rich(TextSpan(text: '${AppLocalizations.of(context)!.go_setting}',style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue, decorationColor: Colors.blue), recognizer: TapGestureRecognizer()..onTap =(){pageNavigation().push(context, SettingPage());}
                         ), ),),
                       ),
                       Align(
@@ -121,7 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           
                           child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white12), margin: EdgeInsets.all(5), child: Padding(
                             padding: const EdgeInsets.all(4.0),
-                            child: Text('username: ${userNameState} ',style: const TextStyle(color: Colors.white),textAlign: TextAlign.center,maxLines: 1,overflow: TextOverflow.ellipsis,),
+                            child: Text('${AppLocalizations.of(context)!.username}: ${userNameState} ',style: const TextStyle(color: Colors.white),textAlign: TextAlign.center,maxLines: 1,overflow: TextOverflow.ellipsis,),
                           )),
                         
                         ),
@@ -133,7 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             width: Responsive().width(context, 0.6),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white12), margin: EdgeInsets.all(5), child: Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: Text('token: ${userToken} ',style: const TextStyle(color: Colors.white),textAlign: TextAlign.center,maxLines: 1,overflow: TextOverflow.ellipsis, ),
+                          child: Text('${AppLocalizations.of(context)!.token}: ${userToken} ',style: const TextStyle(color: Colors.white),textAlign: TextAlign.center,maxLines: 1,overflow: TextOverflow.ellipsis, ),
                         )),
                       ),
                       Container(
@@ -142,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white12), margin: EdgeInsets.all(5), child: Padding(
                               padding: const EdgeInsets.all(4.0),
-                              child: Text('email: ${userEmailState}',style: const TextStyle(color: Colors.white),textAlign: TextAlign.center,maxLines: 1,overflow: TextOverflow.ellipsis,),
+                              child: Text('${AppLocalizations.of(context)!.email}: ${userEmailState}',style: const TextStyle(color: Colors.white),textAlign: TextAlign.center,maxLines: 1,overflow: TextOverflow.ellipsis,),
                             )),
                           ],
                         ),

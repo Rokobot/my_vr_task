@@ -4,6 +4,7 @@ import 'package:task_app/src/constants/theme_constans.dart';
 import 'package:task_app/src/logic/cubit/category_cubit/category_cubit.dart';
 import 'package:task_app/src/presentation/screens/general_screens/profile_page.dart';
 import 'package:task_app/src/presentation/widgets/product_list_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
               appBar: AppBar(
                 actions: [
-                  context.read<CategoryCubit>().showDropDown(),
+                  context.read<CategoryCubit>().showDropDown(context),
                 ],
                 backgroundColor: ThemeColorData().productCardColor,
                 automaticallyImplyLeading: false,
@@ -59,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   });
                 },
                   backgroundColor: ThemeColorData().productCardColor,
-                  items: [BottomNavigationBarItem(icon: Icon(Icons.store), label: 'store'),BottomNavigationBarItem(icon: Icon(Icons.person),label: 'profile')]),
+                  items: [BottomNavigationBarItem(icon: Icon(Icons.store), label: '${AppLocalizations.of(context)!.store}'),BottomNavigationBarItem(icon: Icon(Icons.person),label: '${AppLocalizations.of(context)!.profile}')]),
           );
   }
 }
